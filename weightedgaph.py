@@ -20,7 +20,9 @@ def find_longest_path(file_path):
 
     print(graph)
 
-    # Define uma função auxiliar para calcular o caminho máximo a partir de um nó
+    # print(max_path_dijkstra(graph, 's'))
+
+ # Define uma função auxiliar para calcular o caminho máximo a partir de um nó
     def calculate_max_path(node, visited):
         if node in visited:
             return -math.inf
@@ -57,6 +59,80 @@ def find_longest_path(file_path):
         if path_cost == max_path:
             print(f'Caminho máximo: {path} (custo: {path_cost})')
             break
+
+
+# Função de baixo tentei implementar, mas sem sucesso
+
+'''def max_path_dijkstra(graph, source):
+    dist = {v: -math.inf for v in graph}
+    pred = {v: None for v in graph}
+    dist[source] = 0
+    Q = set(graph)
+
+    while Q:
+        u = max(Q, key=dist.get)
+        Q.remove(u)
+        for v in graph[u]:
+            weight = graph[u][v]
+            if dist[v] < dist[u] - weight:
+                dist[v] = dist[u] - weight
+                pred[v] = u
+
+    max_dist = dist[max(dist, key=dist.get)]
+    path = []
+    curr = max(dist, key=dist.get)
+    while curr is not None:
+        path.append(curr)
+        curr = pred[curr]
+    path.reverse()
+
+    return path, max_dist '''
+
+#-----------------------------------------------------------------
+
+'''# Função para encontrar o vértice com a menor distância
+def minDistance(dist, sptSet):
+    min = float("inf")
+    min_index = -1
+    for v in range(len(dist)):
+        if dist[v] < min and sptSet[v] == False:
+            min = dist[v]
+            min_index = v
+    return min_index
+
+# Função para imprimir o vetor de distâncias
+def printSolution(dist):
+    print("Vértice \tDistância da origem")
+    for i in range(len(dist)):
+        print(i, "\t\t", dist[i])
+
+# Função que implementa o algoritmo de Dijkstra
+def dijkstra(graph, src):
+    # Inicializar o vetor de distâncias com infinito
+    dist = [float("inf")] * len(graph)
+    # Inicializar o vetor de predecessores com None
+    pred = [None] * len(graph)
+    # Inicializar o conjunto de vértices processados com False
+    sptSet = [False] * len(graph)
+    # Atribuir a distância da origem a zero
+    dist[src] = 0
+    # Repetir até que todos os vértices sejam processados
+    for _ in range(len(graph)):
+        # Escolher o vértice de menor distância que não foi processado
+        u = minDistance(dist, sptSet)
+        # Marcar esse vértice como processado
+        sptSet[u] = True
+        # Atualizar as distâncias dos vértices adjacentes a u
+        for v in range(len(graph)):
+            if graph[u][v] > 0 and sptSet[v] == False and dist[v] > dist[u] + graph[u][v]:
+                dist[v] = dist[u] + graph[u][v]
+                pred[v] = u
+    # Imprimir o vetor de distâncias e o vetor de predecessores
+    printSolution(dist)
+    print("Vértice \tPredecessor")
+    for i in range(len(pred)):
+        print(i, "\t\t", pred[i])'''
+
 
 
 
@@ -121,7 +197,3 @@ def find_longest_pat(graph):
 
     # Imprime o caminho mais longo e seu comprimento
     print(f'Caminho mais longo: {max_path}, comprimento: {max_len}')'''
-
-
-
-
