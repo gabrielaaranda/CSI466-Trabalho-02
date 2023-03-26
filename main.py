@@ -1,5 +1,9 @@
-from weightedgaph import find_longest_path
+from weightedgaph import readSubject
 
-caminho = "critical_path/FSL.csv"
+caminho = 1
 
-find_longest_path(caminho)
+while caminho != '0' :
+    caminho = input("Informe o aquivo (0 para sair): ")
+    
+    if caminho != '0':
+        readSubject(caminho)
